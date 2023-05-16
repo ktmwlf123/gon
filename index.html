@@ -43,6 +43,7 @@
                 init();
 
                 $(document).keydown(function(event){
+                    console.log(event)
                     if(isNormal === false){
                         if(event.ctrlKey === true && event.which === 90){
                             cUndo();
