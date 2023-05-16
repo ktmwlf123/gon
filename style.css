@@ -154,6 +154,7 @@ div,select,input{
 #imageCanvas{
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    transform: scale(.84);
 }
 .hoverNotice{
     display: none;
