@@ -125,7 +125,7 @@
                     cStep--;
                     var canvasPic = new Image();
                     canvasPic.src = cPushArray[cStep];
-                    canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 850, 850); }
+                    canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                 }
             }
 
@@ -134,17 +134,17 @@
                     cStep++;
                     var canvasPic = new Image();
                     canvasPic.src = cPushArray[cStep];
-                    canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 850, 850); }
+                    canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                 }
             }
 
             const imageShow = () => {
-                canvas.width = 850;
-                canvas.height = 850;
+                canvas.width = 1024;
+                canvas.height = 1024;
                 
                 img.src = "./data/" + data[randomArray[index]].pid + '_' + data[randomArray[index]].oculus + '_Original.png';
                 img.onload = function(){
-                    ctx.drawImage(img, 0, 0, 850, 850);
+                    ctx.drawImage(img, 0, 0, 1024, 1024);
                     ctx.lineWidth = 2;
                     ctx.strokeStyle = "red";
                 }
@@ -234,13 +234,13 @@
                         isNormal = true;
                         $('.gonText').empty();
                         canvasPic.src = cPushArray[0];
-                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 850, 850); }
+                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                         break;
                     case 'gon':
                         isNormal = false;
                         $('.gonText').append('<span>우측 영상에서 RNFL defect의 영역을<br>폐곡선으로 그려주시기 바랍니다.</span>');
                         canvasPic.src = cPushArray[cPushArray.length-1];
-                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 850, 850); }
+                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                         break;
                 }
             }
