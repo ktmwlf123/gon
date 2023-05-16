@@ -86,7 +86,6 @@
                     randomArray[i] = i;
                 }   
             }
-
             const init = () => {
                 imageShow();
                 initCheck();
@@ -116,7 +115,7 @@
             function cPush() {
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
-                cPushArray.push(document.getElementById('imageCanvas').toDataURL());
+                cPushArray.push(canvas.toDataURL());
             }
 
             function cUndo() {
