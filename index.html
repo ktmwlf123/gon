@@ -155,8 +155,8 @@
                     ctx.moveTo(startX, startY);
                     ctx.lineTo(curX, curY);
                     ctx.stroke();
+                    cPush();
                 }
-                
             }
 
             function mouseDown(e) {
@@ -176,7 +176,6 @@
 
             function mouseUp(e) {
                 drawing = false;
-                cPush();
             }
             
             function mouseOut(e) {
