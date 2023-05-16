@@ -91,6 +91,8 @@
                 initCheck();
                 increaseNum();
                 $('.gonText').empty();
+                cPushArray=[];
+                cStep = -1;
             }
 
             const checkClick = (event, value) => {
@@ -113,7 +115,6 @@
             }
 
             function cPush() {
-                console.log(1111)
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(canvas.toDataURL());
@@ -227,15 +228,19 @@
             const setChkData = (clickData) => {
                 let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].oculus;
                 saveData.result[pid]['value'] = clickData;
-
+                var canvasPic = new Image();
                 switch(clickData){
                     case 'normal':
                         isNormal = true;
                         $('.gonText').empty();
+                        canvasPic.src = cPushArray[0];
+                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 850, 850); }
                         break;
                     case 'gon':
                         isNormal = false;
                         $('.gonText').append('<span>우측 영상에서 RNFL defect의 영역을<br>폐곡선으로 그려주시기 바랍니다.</span>');
+                        canvasPic.src = cPushArray[cPushArray.length-1];
+                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 850, 850); }
                         break;
                 }
             }
