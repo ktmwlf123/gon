@@ -233,7 +233,7 @@
                     case 'normal':
                         isNormal = true;
                         $('.gonText').empty();
-                        canvasPic.src = cPushArray[0];
+                        canvasPic.src = "./data/" + data[randomArray[index]].pid + '_' + data[randomArray[index]].oculus + '_Original.png';
                         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                         break;
                     case 'gon':
