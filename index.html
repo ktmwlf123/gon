@@ -239,8 +239,10 @@
                     case 'gon':
                         isNormal = false;
                         $('.gonText').append('<span>우측 영상에서 RNFL defect의 영역을<br>폐곡선으로 그려주시기 바랍니다.</span>');
-                        canvasPic.src = cPushArray[cStep];
-                        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
+                        if(cStep !== -1){
+                            canvasPic.src = cPushArray[cStep];
+                            canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
+                        }
                         break;
                 }
             }
