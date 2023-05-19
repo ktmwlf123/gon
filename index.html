@@ -121,8 +121,9 @@
             }
 
             function cUndo() {
-                console.log(2)
+               
                 if(isNormal === false){
+                     console.log(2)
                     if (cStep > 0) {
                         cStep--;
                         var canvasPic = new Image();
@@ -133,8 +134,9 @@
             }
 
             function cRedo() {
-                console.log(3)
+               
                 if(isNormal === false){
+                     console.log(3)
                     if (cStep < cPushArray.length-1) {
                         cStep++;
                         var canvasPic = new Image();
