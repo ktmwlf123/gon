@@ -9,7 +9,7 @@
         <script>
             let randomArray = [];
             let index = 0;
-            let saveData = {} 
+            let saveData = {}
             var resi = '';
             var resiyear = '';
 
@@ -43,7 +43,6 @@
                 init();
 
                 $(document).keydown(function(event){
-                    
                     if(event.ctrlKey === true && event.which === 90){
                         cUndo();
                     }else if(event.ctrlKey === true && event.which === 89){
@@ -84,6 +83,7 @@
                     randomArray[i] = i;
                 }   
             }
+
             const init = () => {
                 imageShow();
                 initCheck();
@@ -116,7 +116,7 @@
             function cPush() {
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
-                cPushArray.push(canvas.toDataURL());
+                cPushArray.push(document.getElementById('imageCanvas').toDataURL());
             }
 
             function cUndo() {
@@ -160,6 +160,7 @@
                     ctx.lineTo(curX, curY);
                     ctx.stroke();
                 }
+                
             }
 
             function mouseDown(e) {
@@ -179,7 +180,7 @@
 
             function mouseUp(e) {
                 drawing = false;
-                cPush();
+                // cPush();
             }
             
             function mouseOut(e) {
@@ -412,7 +413,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON</div>
+                    <div class="titleText">GON1</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
