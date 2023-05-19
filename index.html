@@ -114,12 +114,14 @@
             }
 
             function cPush() {
+                console.log(1)
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(document.getElementById('imageCanvas').toDataURL());
             }
 
             function cUndo() {
+                console.log(2)
                 if(isNormal === false){
                     if (cStep > 0) {
                         cStep--;
@@ -131,6 +133,7 @@
             }
 
             function cRedo() {
+                console.log(3)
                 if(isNormal === false){
                     if (cStep < cPushArray.length-1) {
                         cStep++;
@@ -413,7 +416,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON1</div>
+                    <div class="titleText">GON2</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
