@@ -114,7 +114,7 @@
             }
 
             function cPush() {
-                console.log(1)
+                console.log(cPushArray)
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(document.getElementById('imageCanvas').toDataURL());
@@ -123,7 +123,7 @@
             function cUndo() {
                
                 if(isNormal === false){
-                     console.log(2)
+                     console.log(cPushArray)
                     if (cStep > 0) {
                         cStep--;
                         var canvasPic = new Image();
@@ -136,7 +136,7 @@
             function cRedo() {
                
                 if(isNormal === false){
-                     console.log(3)
+                     console.log(cPushArray)
                     if (cStep < cPushArray.length-1) {
                         cStep++;
                         var canvasPic = new Image();
