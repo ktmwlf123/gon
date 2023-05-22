@@ -185,7 +185,7 @@
 
             function mouseUp(e) {
                 drawing = false;
-                cPush();
+                if(!isNormal)cPush();
             }
             
             function mouseOut(e) {
@@ -418,7 +418,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON7</div>
+                    <div class="titleText">GON8</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
