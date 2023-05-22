@@ -116,6 +116,7 @@
             function cPush() {
                 cStep++;
                 console.log(cStep, "p")
+                console.log(sPushArray)
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(document.getElementById('imageCanvas').toDataURL());
             }
@@ -420,7 +421,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON14</div>
+                    <div class="titleText">GON15</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
