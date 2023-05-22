@@ -89,7 +89,7 @@
                 initCheck();
                 increaseNum();
                 $('.gonText').empty();
-                cPushArray = new Array();
+                cPushArray = [];
                 cStep = -1;
                 cPush();
             }
@@ -185,7 +185,7 @@
 
             function mouseUp(e) {
                 drawing = false;
-                // cPush();
+                cPush();
             }
             
             function mouseOut(e) {
@@ -418,7 +418,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON6</div>
+                    <div class="titleText">GON7</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
