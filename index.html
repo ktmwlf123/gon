@@ -113,7 +113,7 @@
             }
 
             function cPush() {
-                console.log(cStep)
+                console.log(cStep, p)
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(document.getElementById('imageCanvas').toDataURL());
@@ -122,7 +122,7 @@
             function cUndo() {
                
                 if(isNormal === false){
-                     console.log(cStep)
+                     console.log(cStep, u)
                     if (cStep > 0) {
                         cStep--;
                         var canvasPic = new Image();
@@ -135,7 +135,7 @@
             function cRedo() {
                
                 if(isNormal === false){
-                     console.log(cPushArray)
+                     console.log(cStep, r)
                     if (cStep < cPushArray.length-1) {
                         cStep++;
                         var canvasPic = new Image();
@@ -417,7 +417,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON10</div>
+                    <div class="titleText">GON11</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
