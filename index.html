@@ -113,8 +113,8 @@
             }
 
             function cPush() {
-                console.log(cStep, "p")
                 cStep++;
+                console.log(cStep, "p")
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(document.getElementById('imageCanvas').toDataURL());
             }
@@ -122,9 +122,10 @@
             function cUndo() {
                
                 if(isNormal === false){
-                     console.log(cStep, "u")
+                     
                     if (cStep > 0) {
                         cStep--;
+                        console.log(cStep, "u")
                         var canvasPic = new Image();
                         canvasPic.src = cPushArray[cStep];
                         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
@@ -135,9 +136,10 @@
             function cRedo() {
                
                 if(isNormal === false){
-                     console.log(cStep, "r")
+                     
                     if (cStep < cPushArray.length-1) {
                         cStep++;
+                        console.log(cStep, "r")
                         var canvasPic = new Image();
                         canvasPic.src = cPushArray[cStep];
                         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
@@ -417,7 +419,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON12</div>
+                    <div class="titleText">GON13</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
