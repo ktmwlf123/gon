@@ -85,12 +85,13 @@
             }
 
             const init = () => {
+                cPushArray = [];
+                cStep = -1;
                 imageShow();
                 initCheck();
                 increaseNum();
                 $('.gonText').empty();
-                cPushArray = [];
-                cStep = -1;
+                cPush();
             }
 
             const checkClick = (event, value) => {
@@ -158,8 +159,6 @@
                     ctx.lineWidth = 2;
                     ctx.strokeStyle = "red";
                 }
-                cStep++;
-                cPushArray.push(document.getElementById('imageCanvas').toDataURL());
             }
 
             function draw(curX, curY) {
@@ -422,7 +421,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON16</div>
+                    <div class="titleText">GON17</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
