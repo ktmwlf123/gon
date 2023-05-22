@@ -116,8 +116,6 @@
                 cStep++;
                 if (cStep < cPushArray.length) { cPushArray.length = cStep; }
                 cPushArray.push(document.getElementById('imageCanvas').toDataURL());
-                console.log(cStep, "p")
-                console.log(cPushArray)
             }
 
             function cUndo() {
@@ -126,7 +124,6 @@
                      
                     if (cStep > 0) {
                         cStep--;
-                        console.log(cStep, "u")
                         var canvasPic = new Image();
                         canvasPic.src = cPushArray[cStep];
                         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
@@ -140,7 +137,6 @@
                      
                     if (cStep < cPushArray.length-1) {
                         cStep++;
-                        console.log(cStep, "r")
                         var canvasPic = new Image();
                         canvasPic.src = cPushArray[cStep];
                         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
@@ -422,7 +418,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON19</div>
+                    <div class="titleText">GON</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
