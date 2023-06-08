@@ -404,6 +404,7 @@
                     let url = URL.createObjectURL(blob);
                     downloadLink[index].setAttribute('href', url);
                 });
+                console.log(downloadLink)
                 if(index === data.length-1){
                     for(let i = 0; i < index; i++){
                         downloadLink[i].click();
