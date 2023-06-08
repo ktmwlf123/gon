@@ -400,13 +400,13 @@
                 downloadLink.push(document.createElement('a'));
                 downloadLink[index].setAttribute('download', data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality);//  + '_' + data[randomArray[index]].disease);
                 
+                canvas.toBlob(function(blob) {
+                    let url = URL.createObjectURL(blob);
+                    downloadLink[index].setAttribute('href', url);
+                });
                 if(index === data.length-1){
                     for(let i = 0; i < index; i++){
-                        canvas.toBlob(function(blob) {
-                            let url = URL.createObjectURL(blob);
-                            downloadLink[index].setAttribute('href', url);
-                            downloadLink[index].click();
-                        });
+                        downloadLink[i].click();
                     }
                 }
             }
