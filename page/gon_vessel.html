@@ -405,10 +405,13 @@
                     a.setAttribute('href', url);
                 });
                 downloadLink.push(a);
-                console.log(downloadLink)
+                
                 if(index === data.length-1){
                     for(let i = 0; i < index; i++){
-                        downloadLink[i].click();
+                        setTimeout(function() {
+                            downloadLink[i].click();
+                        }, 100);
+                        
                     }
                 }
             }
