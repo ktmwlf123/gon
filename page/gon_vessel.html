@@ -171,6 +171,7 @@
                             startX = e.offsetX;
                             startY = e.offsetY;
                             drawing = true;
+                            $('.isDrawing').show();
                         }else{
                             draw(e.offsetX, e.offsetY);
                             startX = e.offsetX;
@@ -184,6 +185,7 @@
                 if(drawing){
                     drawing = false;
                     startX, startY = 0;
+                    $('.isDrawing').hide();
                     if(!isNormal)cPush();
                 }
             }
@@ -452,6 +454,7 @@
             <div class="right">
                 <div class="imageWrap">
                     <canvas id="imageCanvas" width="800" height="800"></canvas>
+                    <div class="isDrawing">NOW DRAWING</div>
                 </div>
             </div>
         </div>
