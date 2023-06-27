@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
+        <style>
+            html,body{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                color: #1a1a1a;
+                font-family: 'Nanum Gothic', sans-serif;
+                background-color: #f3f3f4;
+            }
+            div,select,input{
+                box-sizing: border-box;
+            }
+            .wrap{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                padding: 30px;
+                align-items: center;
+                justify-content: center;
+            }
+            .wrap > div{
+                min-width: 600px;
+                height: 700px;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 50px;
+                box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                cursor: pointer;
+            }
+            .test1Wrap{
+                margin-right: 100px;
+            }
+            .wrap > div > div {
+                width: 100%;
+                font-weight: bolder;
+                text-align: center;    
+            }
+            .gonText{
+                margin-bottom: 50px;
+                font-size: 80px;
+            }
+            .versionText{
+                margin-bottom: 100px;
+                font-size: 80px;
+            }
+            .startText{
+                background-color: #20a541;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                color: #fff;
+                font-size: 50px;
+            }
+
+            @media (max-width: 1450px) {
+                .wrap{
+                    flex-direction: column;
+                    overflow-x: auto;
+                    height: auto;
+                }
+                .test1Wrap{
+                    margin-right: 0px;
+                    margin-bottom: 50px;
+                }
+            }
+        </style>
+        <script>
+            function vesselClick(event){
+                var a = document.createElement("a");
+                a.href = "page/gon_vessel.html"
+                a.click();
+            }
+            function inpaintingClick(event){
+                var a = document.createElement("a");
+                a.href = "page/gon_inpainting.html"
+                a.click();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="test1Wrap" onClick="vesselClick()">
+                <div class="gonText">GON</div>
+                <div class="versionText">VESSEL</div>
+                <div class="startText">검사시작</div>
+            </div>
+            <div class="test2Wrap" onClick="inpaintingClick()">
+                <div class="gonText">GON</div>
+                <div class="versionText">INPAINTING</div>
+                <div class="startText">검사시작</div>
+            </div>
+        </div>
+    </body>
+</html>
