@@ -92,9 +92,6 @@
                 imageShow();
                 initCheck();
                 increaseNum();
-                startX, startY = 0;
-                drawing = false;
-                $('.isDrawing').hide();
                 $('.gonText').empty();
                 isNormal=true;
             }
@@ -184,6 +181,10 @@
             }
 
             function dblclick(e){
+                doneDraw();
+            }
+
+            function doneDraw(){
                 if(drawing){
                     drawing = false;
                     startX, startY = 0;
