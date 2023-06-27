@@ -3,9 +3,9 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
-        <script src="../wo_vessel.js"></script>
+        <script src="../w_vessel.js"></script>
         <link href="../style.css" rel="stylesheet">
-        <title>GON - INPAINTING</title>
+        <title>GON - VESSEL</title>
         <script>
             let randomArray = [];
             let index = 0;
@@ -33,6 +33,10 @@
                 self.resizeTo(screen.availWidth, screen.availHeight);
                 addArray();
                 shuffle(randomArray);
+
+                window.oncontextmenu = function(){
+                    return false;
+                }
 
                 canvas = document.getElementById("imageCanvas");
                 ctx = canvas.getContext("2d");
@@ -62,10 +66,8 @@
                     }
                 });
 
-                canvas.addEventListener("mousemove", function(e){ mouseMove(e) });
-                canvas.addEventListener("mousedown", function(e){ mouseDown(e) });
                 canvas.addEventListener("mouseup", function(e){ mouseUp(e) });
-                canvas.addEventListener("mouseout", function(e){ mouseOut(e) });
+                canvas.addEventListener("dblclick", function(e){ dblclick(e) });
             })
 
             const showNotice = (event) =>{
@@ -90,6 +92,8 @@
                 imageShow();
                 initCheck();
                 increaseNum();
+                drawing = false;
+                $('isDrawing').hide();
                 $('.gonText').empty();
                 isNormal=true;
             }
@@ -149,13 +153,41 @@
                 canvas.width = 1024;
                 canvas.height = 1024;
                 
-                img.src = "../wo_vessel/" + data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality + '_' + data[randomArray[index]].disease +'.png';
+                img.src = "../w_vessel/" + data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality + '_' + data[randomArray[index]].disease +'.png';
                 img.onload = function(){
                     ctx.drawImage(img, 0, 0, 1024, 1024);
                     ctx.lineWidth = 2;
                     ctx.strokeStyle = "red";
+                    ctx.lineJoin = "round"
+                    ctx.lineCap = "round"
                     cStep++;
                     cPushArray.push(document.getElementById('imageCanvas').toDataURL());
+                }
+            }
+
+            function mouseUp(e){
+                if(e.which === 1){
+                    if(!isNormal){
+                        if(drawing === false){
+                            startX = e.offsetX;
+                            startY = e.offsetY;
+                            drawing = true;
+                            $('.isDrawing').show();
+                        }else{
+                            draw(e.offsetX, e.offsetY);
+                            startX = e.offsetX;
+                            startY = e.offsetY;
+                        }
+                    }
+                }
+            }
+
+            function dblclick(e){
+                if(drawing){
+                    drawing = false;
+                    startX, startY = 0;
+                    $('.isDrawing').hide();
+                    if(!isNormal)cPush();
                 }
             }
 
@@ -165,37 +197,14 @@
                     ctx.moveTo(startX, startY);
                     ctx.lineTo(curX, curY);
                     ctx.stroke();
+                    
                 }
-                
             }
 
-            function mouseDown(e) {
-                startX = e.offsetX;
-                startY = e.offsetY;
-                drawing = true;
-            }
-            
-            function mouseMove(e) {
-                if(!drawing) return;
-                let curX = e.offsetX;
-                let curY = e.offsetY;
-                draw(curX, curY);
-                startX = curX;
-                startY = curY;
-            }
-
-            function mouseUp(e) {
-                drawing = false;
-                if(!isNormal)cPush();
-            }
-            
-            function mouseOut(e) {
-                drawing = false;
-            }
 
             const nextClick = () => {
                 if(validateCheck()){
-                    let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality + '_' + data[randomArray[index]].disease;
+                    let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease;
                     saveData.result[pid]['time'] = Date.now();
                     DownloadCanvasAsImage()
                     if(index === data.length-1){
@@ -221,13 +230,13 @@
 
             const initSaveData = () => {
                 for(var i = 0; i<data.length; i++){
-                    var key = data[randomArray[i]].pid + '_' + data[randomArray[i]].laterality + '_' + data[randomArray[i]].disease;
+                    var key = data[randomArray[i]].pid + '_' + data[randomArray[i]].laterality  + '_' + data[randomArray[i]].disease;
                     saveData.result[key] = {'value':'', 'time': ''};
                 }
             }
 
             const validateCheck = () => {
-                let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality + '_' + data[randomArray[index]].disease;
+                let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease;
                 if(saveData.result[pid]['value'] === ''){
                     return false;
                 }else{
@@ -243,7 +252,7 @@
                     case 'normal':
                         isNormal = true;
                         $('.gonText').empty();
-                        canvasPic.src = "../wo_vessel/" + data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease + '.png';
+                        canvasPic.src = "../w_vessel/" + data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease + '.png';
                         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                         break;
                     case 'gon':
@@ -383,7 +392,7 @@
 
                 var dateString = year + '-' + month  + '-' + day;
 
-                dataDownload(JSON.stringify(saveData), dateString +'_'+ saveData.info.name + '_goninpaint.mvl', 'json');
+                dataDownload(JSON.stringify(saveData), dateString +'_'+ saveData.info.name + '_gonvessel.mvl', 'json');
             }
 
             const dataDownload = (content, fileName, contentType) => {
@@ -396,7 +405,7 @@
 
             function DownloadCanvasAsImage(){
                 let downloadLink = document.createElement('a');
-                downloadLink.setAttribute('download', data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality);//  + '_' + data[randomArray[index]].disease);
+                downloadLink.setAttribute('download', data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality);// + '_' + data[randomArray[index]].disease);
                 
                 canvas.toBlob(function(blob) {
                     let url = URL.createObjectURL(blob);
@@ -411,7 +420,7 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON - INPAINTING</div>
+                    <div class="titleText">GON - VESSEL</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
@@ -446,12 +455,13 @@
             <div class="right">
                 <div class="imageWrap">
                     <canvas id="imageCanvas" width="800" height="800"></canvas>
+                    <div class="isDrawing">NOW DRAWING</div>
                 </div>
             </div>
         </div>
         <div class="infoPage">
             <div class="formWrap">
-                <div class="infoTitleText">GON - INPAINTING</div>
+                <div class="infoTitleText">GON - VESSEL</div>
                 <div class="infoSubTitleText">검사자 정보</div>
                 <div class="formRow">
                     <div class="formTitle">이름</div>
