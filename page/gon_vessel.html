@@ -68,7 +68,6 @@
 
                 canvas.addEventListener("mouseup", function(e){ mouseUp(e) });
                 canvas.addEventListener("dblclick", function(e){ dblclick(e) });
-                // canvas.addEventListener("mouseout", function(e){ mouseOut(e) });
             })
 
             const showNotice = (event) =>{
@@ -93,6 +92,8 @@
                 imageShow();
                 initCheck();
                 increaseNum();
+                drawing = false;
+                $('isDrawing').hide();
                 $('.gonText').empty();
                 isNormal=true;
             }
