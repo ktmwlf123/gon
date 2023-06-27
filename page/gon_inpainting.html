@@ -92,9 +92,6 @@
                 imageShow();
                 initCheck();
                 increaseNum();
-                drawing = false;
-                startX, startY = 0;
-                $('.isDrawing').hide();
                 $('.gonText').empty();
                 isNormal=true;
             }
@@ -184,6 +181,10 @@
             }
 
             function dblclick(e){
+                doneDraw();
+            }
+
+            function doneDraw(){
                 if(drawing){
                     drawing = false;
                     startX, startY = 0;
@@ -205,6 +206,7 @@
             const nextClick = () => {
                 if(validateCheck()){
                     let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality + '_' + data[randomArray[index]].disease;
+                    doneDraw();
                     saveData.result[pid]['time'] = Date.now();
                     DownloadCanvasAsImage()
                     if(index === data.length-1){
