@@ -10,6 +10,7 @@
                 height: 100%;
                 color: #1a1a1a;
                 font-family: 'Nanum Gothic', sans-serif;
+                background-color: #f3f3f4;
             }
             div,select,input{
                 box-sizing: border-box;
@@ -17,14 +18,13 @@
             .wrap{
                 width: 100%;
                 height: 100%;
-                display: flex;
+                display: none;
                 padding: 30px;
-                background-color: #f3f3f4;
                 align-items: center;
                 justify-content: center;
             }
             .wrap > div{
-                width: 600px;
+                min-width: 600px;
                 height: 700px;
                 background-color: #fff;
                 border-radius: 10px;
@@ -58,32 +58,99 @@
                 color: #fff;
                 font-size: 50px;
             }
+            .qWrap{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                padding: 30px;
+                align-items: center;
+                justify-content: center;
+            }
+            .TextWrap{
+                min-width: 500px;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 50px;
+                box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+            }
+            .mainText{
+                font-size: 40px;
+                border-bottom: 1px solid #f3f3f4;
+                font-weight: bold;
+                padding-bottom: 20px;
+                margin-bottom: 50px;
+            }
+            .sub1Text{
+                font-size: 25px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+            .sub2Text{
+                font-size: 20px;
+                margin-bottom: 50px;
+            }
+            .btnWrap{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .btnWrap > div{
+                padding: 20px;
+                background-color: #20a541;
+                color: #fff;
+                font-size: 30px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .btnWrap > div:nth-child(1){
+                margin-right: 50px;
+            }
+
+            @media (max-width: 1450px) {
+                .wrap{
+                    flex-direction: column;
+                    overflow-x: auto;
+                    height: auto;
+                }
+                .test1Wrap{
+                    margin-right: 0px;
+                    margin-bottom: 50px;
+                }
+            }
         </style>
         <script>
-            function vesselClick(event){
-                var a = document.createElement("a");
-                a.href = "page/gon_vessel.html"
-                a.click();
+            function startClick(){
+                if(confirm('테스트 없이 바로 시작하시겠습니까 ?')){
+                    var a = document.createElement("a");
+                    a.href = "index2.html"
+                    a.click();
+                }
             }
-            function inpaintingClick(event){
+            function testClick(){
                 var a = document.createElement("a");
-                a.href = "page/gon_inpainting.html"
+                a.href = "test.html"
                 a.click();
             }
             
         </script>
     </head>
     <body>
-        <div class="wrap">
-            <div class="test1Wrap" onClick="vesselClick()">
-                <div class="gonText">GON</div>
-                <div class="versionText">VESSEL</div>
-                <div class="startText">검사시작</div>
-            </div>
-            <div class="test2Wrap" onClick="inpaintingClick()">
-                <div class="gonText">GON</div>
-                <div class="versionText">INPAINTING</div>
-                <div class="startText">검사시작</div>
+        <div class="qWrap">
+            <div class="TextWrap">
+                <div class="mainText">
+                    GON
+                </div>
+                <div class="sub1Text">
+                    검사 시작 전 주의사항
+                </div>
+                <div class="sub2Text">
+                    문구 넣어주세요 ...<br>( 본 테스트 중 마우스를 활용하여 ㅁㅁㅁ를 하는 ㅁㅁㅁ가 있습니다.<br> 케이스 별 소요시간에 ㅁㅁㅁ하는 시간도 포함되어 있기 때문에 미리 테스트 하여 익숙하게 ??? 뭐 이런 문구???
+                    <br> &lt;br&gt;태그를 통해 엔터칠수있습니다. )
+                </div>
+                <div class="btnWrap">
+                    <div onClick="startClick()">바로 시작</div>
+                    <div onClick="testClick()">가이드 페이지 이동</div>
+                </div>
             </div>
         </div>
     </body>
