@@ -208,6 +208,7 @@
                 if(validateCheck()){
                     let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease;
                     saveData.result[pid]['time'] = Date.now();
+                    doneDraw();
                     DownloadCanvasAsImage()
                     if(index === data.length-1){
                         showEndPage();
