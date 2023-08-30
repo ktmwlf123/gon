@@ -5,7 +5,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
         <script src="../w_vessel.js"></script>
         <link href="../style.css" rel="stylesheet">
-        <title>GON - VESSEL</title>
+        <title>RNFL defect - First</title>
         <script>
             let randomArray = [];
             let index = 0;
@@ -67,6 +67,7 @@
                 });
 
                 canvas.addEventListener("mouseup", function(e){ mouseUp(e) });
+                canvas.addEventListener("mousemove", function(e){ mouseMove(e) });
                 canvas.addEventListener("dblclick", function(e){ dblclick(e) });
             })
 
@@ -163,7 +164,7 @@
                 }
             }
 
-            function mouseUp(e){
+            function mouseMove(e){
                 if(e.which === 1){
                     if(!isNormal){
                         if(drawing === false){
@@ -207,8 +208,8 @@
             const nextClick = () => {
                 if(validateCheck()){
                     let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease;
-                    saveData.result[pid]['time'] = Date.now();
                     doneDraw();
+                    saveData.result[pid]['time'] = Date.now();
                     DownloadCanvasAsImage()
                     if(index === data.length-1){
                         showEndPage();
@@ -423,18 +424,18 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON - VESSEL</div>
+                    <div class="titleText">RNFL defect - First</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
                 <div class="checkWrap">
                     <div class="checkRow">
                         <div class="customChk" onclick="checkClick(event, 'normal')"></div>
-                        <div class="customChkLabel" onclick="checkLabelClick(event, 'normal')">NORMAL</div>
+                        <div class="customChkLabel" onclick="checkLabelClick(event, 'normal')">RNFL defect 무</div>
                     </div>
                     <div class="checkRow">
                         <div class="customChk" onclick="checkClick(event, 'gon')"></div>
-                        <div class="customChkLabel" onclick="checkLabelClick(event, 'gon')">GON</div>
+                        <div class="customChkLabel" onclick="checkLabelClick(event, 'gon')">RNFL defect 유</div>
                     </div>
                     <div class="gonText"></div>
                 </div>
@@ -448,8 +449,8 @@
                 <div class="hoverNotice">
                     <div class="hoverNoticeTitle">공지 사항</div>
                     <div class="hoverNoticeText">
-                        - NORMAL 선택시 <span class="redPoint">그리기 기능이 동작하지 않습니다.</span><br>
-                        - GON 선택 후 <span class="redPoint">영상에 직접 그리기가 가능합니다.</span><br>
+                        - “RNFL defect 무” 선택시 <span class="redPoint">그리기 기능이 동작하지 않습니다.</span><br>
+                        - “RNFL defect 유” 선택 후 <span class="redPoint">영상에 직접 그리기가 가능합니다.</span><br>
                         - <span class="redPoint">UNDO 버튼 혹은 crtl + z</span> 로 영상에 그린 그림의 undo를 할 수 있습니다.<br>
                         - <span class="redPoint">REDO 버튼 혹은 crtl + y</span> 로 영상에 그린 그림의 redo를 할 수 있습니다.
                     </div>
@@ -464,7 +465,7 @@
         </div>
         <div class="infoPage">
             <div class="formWrap">
-                <div class="infoTitleText">GON - VESSEL</div>
+                <div class="infoTitleText">RNFL defect - First</div>
                 <div class="infoSubTitleText">검사자 정보</div>
                 <div class="formRow">
                     <div class="formTitle">이름</div>
