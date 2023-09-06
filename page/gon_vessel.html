@@ -201,6 +201,8 @@
             }
 
             function draw(curX, curY) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
                 if(!isNormal){
                     ctx.beginPath();
                     ctx.moveTo(startX, startY);
@@ -208,7 +210,7 @@
                     ctx.stroke();
                 }
                 
-                requestAnaimationFrame(draw);
+                // requestAnaimationFrame(draw);
             }
 
 
