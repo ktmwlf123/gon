@@ -167,9 +167,6 @@
 
             function mouseMove(e){
                 if(drawing === true){
-                    var canvasPic = new Image();
-                    canvasPic.src = cPushArray[cPushArray.length-1];
-                    canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0, 1024, 1024); }
                     draw(e.offsetX, e.offsetY);
                 }
 
@@ -209,8 +206,9 @@
                     ctx.moveTo(startX, startY);
                     ctx.lineTo(curX, curY);
                     ctx.stroke();
-                    
                 }
+                
+                requestAnaimationFrame(draw);
             }
 
 
