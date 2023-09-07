@@ -228,14 +228,19 @@
                 if(validateCheck()){
                     let pid = data[randomArray[index]].pid + '_' + data[randomArray[index]].laterality  + '_' + data[randomArray[index]].disease;
                     doneDraw();
-                    saveData.result[pid]['time'] = Date.now();
-                    DownloadCanvasAsImage()
-                    if(index === data.length-1){
-                        showEndPage();
+                    if(cStep === 0){
+                        alert('RNFL 영역을 그리지 않았습니다.');
                     }else{
-                        index++;
-                        init();
+                        saveData.result[pid]['time'] = Date.now();
+                        DownloadCanvasAsImage()
+                        if(index === data.length-1){
+                            showEndPage();
+                        }else{
+                            index++;
+                            init();
+                        }
                     }
+                    
                     
                 }else{
                     alert('진단 여부를 체크해 주세요.');
