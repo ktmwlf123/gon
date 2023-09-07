@@ -20,11 +20,10 @@
             let startX = 0;
             let startY = 0;
             let drawing = false;
-            let clickNum = 0;
 
             let isNormal = true;
 
-            var cPushArray = new Array(); 
+            var cPushArray = new Array();
             var cStep = -1;
 
             
@@ -41,6 +40,8 @@
 
                 canvas = document.getElementById("imageCanvas");
                 ctx = canvas.getContext("2d");
+
+                lineEvent = document.getElementById("svgArea");
                 saveData['info'] = {'name': '', 'age': '', 'sex': '', 'resi': '' , 'resiyear': '', 'dept': ''};
                 saveData['result'] = {};
 
@@ -67,9 +68,9 @@
                     }
                 });
 
-                canvas.addEventListener("mouseup", function(e){ mouseUp(e) });
-                canvas.addEventListener("mousemove", function(e){ mouseMove(e) });
-                canvas.addEventListener("dblclick", function(e){ dblclick(e) });
+                lineEvent.addEventListener("mouseup", function(e){ mouseUp(e) });
+                lineEvent.addEventListener("mousemove", function(e){ mouseMove(e) });
+                lineEvent.addEventListener("dblclick", function(e){ dblclick(e) });
             })
 
             const showNotice = (event) =>{
@@ -165,25 +166,33 @@
                 }
             }
 
-            function mouseMove(e){
-                if(drawing === true){
-                    draw(e.offsetX, e.offsetY);
-                }
-
-            }
-
             function mouseUp(e){
                 if(e.which === 1){
                     if(!isNormal){
-                        if(clickNum === 0){ //드로잉 시작
+                        if(drawing === false){
                             startX = e.offsetX;
                             startY = e.offsetY;
                             drawing = true;
-                            clickNum = 1;
                             $('.isDrawing').show();
-                        
+                            $('#svgArea > line').attr('x1', startX)
+                            $('#svgArea > line').attr('y1', startY)
+                            $('#svgArea > line').attr('x2', startX)
+                            $('#svgArea > line').attr('y2', startY)
+                        }else{
+                            draw(e.offsetX, e.offsetY);
+                            startX = e.offsetX;
+                            startY = e.offsetY;
+                            $('#svgArea > line').attr('x1', startX)
+                            $('#svgArea > line').attr('y1', startY)
                         }
                     }
+                }
+            }
+
+            function mouseMove(e){
+                if(drawing){
+                    $('#svgArea > line').attr('x2', e.offsetX)
+                    $('#svgArea > line').attr('y2', e.offsetY)
                 }
             }
 
@@ -197,20 +206,21 @@
                     startX, startY = 0;
                     $('.isDrawing').hide();
                     if(!isNormal)cPush();
+                    $('#svgArea > line').attr('x1', '0')
+                    $('#svgArea > line').attr('y1', '0')
+                    $('#svgArea > line').attr('x2', '0')
+                    $('#svgArea > line').attr('y2', '0')
                 }
             }
 
             function draw(curX, curY) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
                 if(!isNormal){
                     ctx.beginPath();
                     ctx.moveTo(startX, startY);
                     ctx.lineTo(curX, curY);
                     ctx.stroke();
+                    
                 }
-                
-                // requestAnaimationFrame(draw);
             }
 
 
@@ -468,6 +478,9 @@
             <div class="right">
                 <div class="imageWrap">
                     <canvas id="imageCanvas" width="800" height="800"></canvas>
+                    <svg id="svgArea" width="1024" height="1024">
+                        <line x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(255,0,0);stroke-width:2" />
+                    </svg>
                     <div class="isDrawing">NOW DRAWING</div>
                 </div>
             </div>
