@@ -5,7 +5,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
         <script src="../wo_vessel.js"></script>
         <link href="../style.css" rel="stylesheet">
-        <title>GON - INPAINTING</title>
+        <title>RNFL defect - Second</title>
         <script>
             let randomArray = [];
             let index = 0;
@@ -40,6 +40,8 @@
 
                 canvas = document.getElementById("imageCanvas");
                 ctx = canvas.getContext("2d");
+
+                lineEvent = document.getElementById("svgArea");
                 saveData['info'] = {'name': '', 'age': '', 'sex': '', 'resi': '' , 'resiyear': '', 'dept': ''};
                 saveData['result'] = {};
 
@@ -66,8 +68,9 @@
                     }
                 });
 
-                canvas.addEventListener("mouseup", function(e){ mouseUp(e) });
-                canvas.addEventListener("dblclick", function(e){ dblclick(e) });
+                lineEvent.addEventListener("mouseup", function(e){ mouseUp(e) });
+                lineEvent.addEventListener("mousemove", function(e){ mouseMove(e) });
+                lineEvent.addEventListener("dblclick", function(e){ dblclick(e) });
             })
 
             const showNotice = (event) =>{
@@ -171,12 +174,25 @@
                             startY = e.offsetY;
                             drawing = true;
                             $('.isDrawing').show();
+                            $('#svgArea > line').attr('x1', startX)
+                            $('#svgArea > line').attr('y1', startY)
+                            $('#svgArea > line').attr('x2', startX)
+                            $('#svgArea > line').attr('y2', startY)
                         }else{
                             draw(e.offsetX, e.offsetY);
                             startX = e.offsetX;
                             startY = e.offsetY;
+                            $('#svgArea > line').attr('x1', startX)
+                            $('#svgArea > line').attr('y1', startY)
                         }
                     }
+                }
+            }
+
+            function mouseMove(e){
+                if(drawing){
+                    $('#svgArea > line').attr('x2', e.offsetX)
+                    $('#svgArea > line').attr('y2', e.offsetY)
                 }
             }
 
@@ -190,6 +206,10 @@
                     startX, startY = 0;
                     $('.isDrawing').hide();
                     if(!isNormal)cPush();
+                    $('#svgArea > line').attr('x1', '0')
+                    $('#svgArea > line').attr('y1', '0')
+                    $('#svgArea > line').attr('x2', '0')
+                    $('#svgArea > line').attr('y2', '0')
                 }
             }
 
@@ -422,18 +442,18 @@
         <div class="mainPage test1">
             <div class="left">
                 <div class="title">
-                    <div class="titleText">GON - INPAINTING</div>
+                    <div class="titleText">RNFL defect - Second</div>
                     <div class="help">?</div>
                 </div>
                 <div class="ongoingCase"></div>
                 <div class="checkWrap">
                     <div class="checkRow">
                         <div class="customChk" onclick="checkClick(event, 'normal')"></div>
-                        <div class="customChkLabel" onclick="checkLabelClick(event, 'normal')">NORMAL</div>
+                        <div class="customChkLabel" onclick="checkLabelClick(event, 'normal')">RNFL defect 무</div>
                     </div>
                     <div class="checkRow">
                         <div class="customChk" onclick="checkClick(event, 'gon')"></div>
-                        <div class="customChkLabel" onclick="checkLabelClick(event, 'gon')">GON</div>
+                        <div class="customChkLabel" onclick="checkLabelClick(event, 'gon')">RNFL defect 유</div>
                     </div>
                     <div class="gonText"></div>
                 </div>
@@ -447,8 +467,8 @@
                 <div class="hoverNotice">
                     <div class="hoverNoticeTitle">공지 사항</div>
                     <div class="hoverNoticeText">
-                        - NORMAL 선택시 <span class="redPoint">그리기 기능이 동작하지 않습니다.</span><br>
-                        - GON 선택 후 <span class="redPoint">영상에 직접 그리기가 가능합니다.</span><br>
+                        - “RNFL defect 무” 선택시 <span class="redPoint">그리기 기능이 동작하지 않습니다.</span><br>
+                        - “RNFL defect 유” 선택 후 <span class="redPoint">영상에 직접 그리기가 가능합니다.</span><br>
                         - <span class="redPoint">UNDO 버튼 혹은 crtl + z</span> 로 영상에 그린 그림의 undo를 할 수 있습니다.<br>
                         - <span class="redPoint">REDO 버튼 혹은 crtl + y</span> 로 영상에 그린 그림의 redo를 할 수 있습니다.
                     </div>
@@ -457,13 +477,16 @@
             <div class="right">
                 <div class="imageWrap">
                     <canvas id="imageCanvas" width="800" height="800"></canvas>
+                    <svg id="svgArea" width="1024" height="1024">
+                        <line x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(255,0,0);stroke-width:2" />
+                    </svg>
                     <div class="isDrawing">NOW DRAWING</div>
                 </div>
             </div>
         </div>
         <div class="infoPage">
             <div class="formWrap">
-                <div class="infoTitleText">GON - INPAINTING</div>
+                <div class="infoTitleText">RNFL defect - Second</div>
                 <div class="infoSubTitleText">검사자 정보</div>
                 <div class="formRow">
                     <div class="formTitle">이름</div>
