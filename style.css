@@ -5,6 +5,7 @@ html,body{
     height: 100%;
     color: #1a1a1a;
     font-family: 'Nanum Gothic', sans-serif;
+    overflow-y: hidden;
 }
 div,select,input{
     box-sizing: border-box;
@@ -153,9 +154,6 @@ div,select,input{
 .imageWrap{
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
 }
 .isDrawing{
@@ -175,6 +173,15 @@ div,select,input{
 #imageCanvas{
     box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    transform: scale(.84);
+    margin-top: -75px;
+    margin-left: 150px;
+}
+#svgArea{
+    position: absolute;
+    top: -75px;
+    left: 150px;
+    z-index: 998;
     transform: scale(.84);
 }
 .hoverNotice{
